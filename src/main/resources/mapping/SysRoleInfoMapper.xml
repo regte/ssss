@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.jk.dao.SysRoleInfoMapper" >
+
+
   <resultMap id="BaseResultMap" type="org.jk.entity.SysRoleInfo" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="CREATEDATETIME" property="createdatetime" jdbcType="TIMESTAMP" />
@@ -10,9 +12,51 @@
     <result column="SEQ" property="seq" jdbcType="INTEGER" />
     <result column="UPDATEDATETIME" property="updatedatetime" jdbcType="TIMESTAMP" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     ID, CREATEDATETIME, DESCRIPTION, ICONCLS, NAME, SEQ, UPDATEDATETIME
   </sql>
+
+
+
+
+  <!--查询角色集合-->
+  <select id="selectRoleList" parameterType="org.jk.util.PageUtil" resultMap="BaseResultMap">
+   SELECT  <include refid="Base_Column_List"/> from t_sysrole_info limit ${start},${pageSize}
+  </select>
+
+  <!-- 查询总条数-->
+  <select id="selectCount" parameterType="org.jk.util.PageUtil" resultType="java.lang.Integer">
+    SELECT  count(ID) from t_sysrole_info
+  </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

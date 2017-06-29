@@ -4,7 +4,11 @@ import org.jk.dao.SysresourceMapper;
 import org.jk.entity.SysResourcetype;
 import org.jk.entity.Sysresource;
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import java.util.*;
 
@@ -66,12 +70,7 @@ public class ResourceServiceImpl implements ResourceService {
         return resourceList;
     }
 
-    @Override
-    public List<Sysresource> getResourceTree() {
-        return resourceDao.getResourceTree();
 
-
-    }
 
     /*
         @Override
@@ -166,5 +165,11 @@ public class ResourceServiceImpl implements ResourceService {
         return newList;
     }
 
+    @Autowired
+   private SysresourceMapper sysresourceMapper;
 
+    @Override
+    public List<Sysresource> getResourceTree() {
+        return sysresourceMapper.getResourceTree();
+    }
 }

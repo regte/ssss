@@ -16,12 +16,42 @@
 
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, CREATEDATETIME, DESCRIPTION, ICONCLS, NAME, SEQ, UPDATEDATETIME, URL, pid, resourcetypeId, 
+    ID, CREATEDATETIME, DESCRIPTION, ICONCLS, NAME, SEQ, UPDATEDATETIME, URL, pid, resourcetypeId,
     leafNode
   </sql>
 
+
+
+
+
+
+  <resultMap id="resultMap" type="org.jk.entity.Sysresource" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ICONCLS" property="iconcls" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <select id="selectResourceList" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_sysresource_info
 
@@ -42,7 +72,6 @@
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from t_sysresource_info
-
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="org.jk.entity.Sysresource" >
@@ -55,7 +84,7 @@
       #{updatedatetime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
       #{resourcetypeid,jdbcType=VARCHAR}, #{leafnode,jdbcType=INTEGER})
   </insert>
-  <insert id="addResrouce" parameterType="org.jk.entity.Sysresource" >
+  <insert id="insertSelective" parameterType="org.jk.entity.Sysresource" >
     insert into t_sysresource_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -128,7 +157,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateResource" parameterType="org.jk.entity.Sysresource" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.jk.entity.Sysresource" >
     update t_sysresource_info
     <set >
       <if test="createdatetime != null" >
@@ -178,4 +207,5 @@
       leafNode = #{leafnode,jdbcType=INTEGER}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+
 </mapper>

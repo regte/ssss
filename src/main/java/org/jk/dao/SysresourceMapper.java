@@ -1,9 +1,12 @@
 package org.jk.dao;
 import org.jk.entity.Sysresource;
+
+import java.util.List;
+
 import java.util.List;
 public interface SysresourceMapper {
     //删除
-    int deleteByPrimaryKey(String id);
+    void deleteByPrimaryKey(String id);
     int insert(Sysresource record);
     int updateByPrimaryKey(Sysresource record);
 //修改
@@ -18,4 +21,6 @@ public interface SysresourceMapper {
     List<Sysresource> selectResourceByUserId(String userId);
     //查询所有资源树
     List<Sysresource> getResourceTree();
+
+
 }
