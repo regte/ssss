@@ -13,19 +13,36 @@
     <result column="pid" property="pid" jdbcType="VARCHAR" />
     <result column="resourcetypeId" property="resourcetypeid" jdbcType="VARCHAR" />
     <result column="leafNode" property="leafnode" jdbcType="INTEGER" />
+
   </resultMap>
   <sql id="Base_Column_List" >
     ID, CREATEDATETIME, DESCRIPTION, ICONCLS, NAME, SEQ, UPDATEDATETIME, URL, pid, resourcetypeId, 
     leafNode
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+
+  <select id="selectResourceList" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from t_sysresource_info
-    where ID = #{id,jdbcType=VARCHAR}
+
   </select>
+  <select id="showResource" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_sysresource_info
+     where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 查询菜单url资源 tree -->
+  <select id="getResourceTree" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from t_sysresource_info
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from t_sysresource_info
+
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="org.jk.entity.Sysresource" >
@@ -38,7 +55,7 @@
       #{updatedatetime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
       #{resourcetypeid,jdbcType=VARCHAR}, #{leafnode,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="org.jk.entity.Sysresource" >
+  <insert id="addResrouce" parameterType="org.jk.entity.Sysresource" >
     insert into t_sysresource_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -111,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.jk.entity.Sysresource" >
+  <update id="updateResource" parameterType="org.jk.entity.Sysresource" >
     update t_sysresource_info
     <set >
       <if test="createdatetime != null" >

@@ -23,6 +23,9 @@ public class Sysresource {
 
     private String resourcetypeid;
 
+
+
+
     private Integer leafnode;
 
     public String getId() {
