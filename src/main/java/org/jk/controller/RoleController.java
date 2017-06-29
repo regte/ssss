@@ -16,6 +16,11 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
+
+    public void ss(){
+        System.out.print("2222222222222");
+    }
+
     /*查询角色列表*/
     @RequestMapping(value = "selectRoleList",method = RequestMethod.POST)
     @ResponseBody
