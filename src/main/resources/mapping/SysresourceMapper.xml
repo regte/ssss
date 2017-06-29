@@ -15,9 +15,50 @@
     <result column="leafNode" property="leafnode" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, CREATEDATETIME, DESCRIPTION, ICONCLS, NAME, SEQ, UPDATEDATETIME, URL, pid, resourcetypeId, 
+    ID, CREATEDATETIME, DESCRIPTION, ICONCLS, NAME, SEQ, UPDATEDATETIME, URL, pid, resourcetypeId,
     leafNode
   </sql>
+
+
+
+
+
+
+  <resultMap id="resultMap" type="org.jk.entity.Sysresource" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ICONCLS" property="iconcls" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <!--查询  resourceList集合 字段-->
+  <sql id="Column_sql">
+    ID, ICONCLS, NAME, URL, pid
+  </sql>
+
+
+  <!--查询  resourceList集合 -->
+  <select id="getResourceTree" resultMap="resultMap">
+    select <include refid="Column_sql"/>
+    from
+    t_sysresource_info
+  </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
