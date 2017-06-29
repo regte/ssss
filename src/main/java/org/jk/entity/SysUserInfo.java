@@ -1,5 +1,7 @@
 package org.jk.entity;
 
+import org.jk.util.PageUtil;
+
 import java.util.Date;
 
 public class SysUserInfo {
@@ -92,4 +94,7 @@ public class SysUserInfo {
     public void setSysuserCreatedatetime(Date sysuserCreatedatetime) {
         this.sysuserCreatedatetime = sysuserCreatedatetime;
     }
+
+
+
 }

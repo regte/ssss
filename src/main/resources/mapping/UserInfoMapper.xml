@@ -1,27 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.jk.dao.UserInfoMapper" >
+
+
   <resultMap id="BaseResultMap" type="org.jk.entity.UserInfo" >
-    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <id column="sysuser_id" property="userId" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
     <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
     <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
     <result column="user_time" property="userTime" jdbcType="DATE" />
   </resultMap>
+
+
   <sql id="Base_Column_List" >
     user_id, user_name, user_pwd, user_tel, user_email, user_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_user_info
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_user_info
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
+
+
   <insert id="insert" parameterType="org.jk.entity.UserInfo" >
     insert into t_user_info (user_id, user_name, user_pwd, 
       user_tel, user_email, user_time
@@ -30,6 +53,8 @@
       #{userTel,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userTime,jdbcType=DATE}
       )
   </insert>
+
+
   <insert id="insertSelective" parameterType="org.jk.entity.UserInfo" >
     insert into t_user_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -52,6 +77,8 @@
         user_time,
       </if>
     </trim>
+
+
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
@@ -72,6 +99,8 @@
         #{userTime,jdbcType=DATE},
       </if>
     </trim>
+
+
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="org.jk.entity.UserInfo" >
     update t_user_info
@@ -94,6 +123,9 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+
+
   <update id="updateByPrimaryKey" parameterType="org.jk.entity.UserInfo" >
     update t_user_info
     set user_name = #{userName,jdbcType=VARCHAR},
