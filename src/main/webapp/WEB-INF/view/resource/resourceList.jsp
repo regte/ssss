@@ -35,8 +35,8 @@
 				url : sys.contextPath + '/resource/selectResourceList.do',
 				method:'post',
 				idField : 'id',
-				treeField : 'name',
-			parentField : '_parentId',
+				treeField : 'text',
+			    parentField : '_parentId',
 				pagination:true,
 				rownumbers:true,
  				pageNumber:1,
@@ -48,7 +48,7 @@
 				frozenColumns : [ [ {
 					width : '200',
 					title : '资源名称',
-					field : 'name'
+					field : 'text'
 				} ] ],
 				columns : [ [ {
 					width : '200',

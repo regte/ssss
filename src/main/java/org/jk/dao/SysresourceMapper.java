@@ -16,7 +16,7 @@ public interface SysresourceMapper {
 //添加
     void addResrouce(Sysresource resource);
 //通过id查询
-    List<Sysresource> selectResourceList(String id);
+    List<Sysresource> selectResourceList();
     //		根据用户id查询拥有的resource资源权限
     List<Sysresource> selectResourceByUserId(String userId);
     //查询所有资源树

@@ -93,10 +93,64 @@ public class ResourceController {
     //查询list集合
     @RequestMapping(value="selectResourceList",method=RequestMethod.POST)
     @ResponseBody
-    public List<Sysresource> selectResourceList(String id){
+    public List<Tree> selectResourceList(){
         //查询list集合
-        List<Sysresource> resourceList = 	resourceService.selectResourceList(id);
-        return resourceList;
+        List<Sysresource> resourceList = 	resourceService.selectResourceList();
+
+        ArrayList<Tree> treeList = new ArrayList<>();
+        //一级节点
+        Tree yiji = null;
+        //子节点list
+        ArrayList<Tree> childList = null;
+        //子级节点
+        Tree child = null;
+        //节点的自定义属性 如 url等。。。
+        HashMap<String, String> nodeAttr = null;
+        for (int i = 0; i < resourceList.size(); i++) {
+            //pid== null 说明一级节点
+            if (resourceList.get(i).getPid() == null) {
+                yiji = new Tree();
+                yiji.setId(resourceList.get(i).getId());
+                yiji.setText(resourceList.get(i).getName());
+                yiji.setIconCls(resourceList.get(i).getIconcls());
+                yiji.setCreatedatetime(resourceList.get(i).getCreatedatetime());
+                yiji.setResourcetypeid(resourceList.get(i).getResourcetypeid());
+                yiji.setState("closed");
+                childList = new ArrayList<>();
+
+                //循环遍历子节点
+                for (int j = 0; j < resourceList.size(); j++) {
+                    //当前循环的节点的父级id 等于  上层循环节点的id
+                    if (resourceList.get(j).getPid() != null &&
+                            resourceList.get(i).getId().equals(resourceList.get(j).getPid()) ) {
+                        //实例化子节点
+                        child = new Tree();
+                        //节点属性赋值
+                        child.setId(resourceList.get(j).getId());
+                        child.setText(resourceList.get(j).getName());
+                        child.setIconCls(resourceList.get(j).getIconcls());
+                        child.setPid(resourceList.get(j).getPid());
+                        child.setCreatedatetime(resourceList.get(j).getCreatedatetime());
+                        child.setResourcetypeid(resourceList.get(j).getResourcetypeid());
+                        child.setState("open");
+                        //实例化 自定义节点属性map
+                        nodeAttr = new HashMap<>();
+                        nodeAttr.put("url", resourceList.get(j).getUrl());
+                        child.setAttributes(nodeAttr);
+                        //子节点list 添加 child节点
+                        childList.add(child);
+
+                        //循环递归调用
+                        selectChildList(resourceList, child);
+                    }
+                }
+                yiji.setChildren(childList);
+                treeList.add(yiji);
+            }
+        }
+
+        return treeList;
+
     }
     /**
      * 查询所有的权限资源tree
@@ -177,6 +231,8 @@ public class ResourceController {
                 child.setText(resourceList.get(j).getName());
                 child.setIconCls(resourceList.get(j).getIconcls());
                 child.setPid(resourceList.get(j).getPid());
+                child.setCreatedatetime(resourceList.get(j).getCreatedatetime());
+                child.setResourcetypeid(resourceList.get(j).getResourcetypeid());
                 child.setState("open");
                 //实例化 自定义节点属性map
                 nodeAttr = new HashMap<>();

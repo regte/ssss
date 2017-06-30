@@ -20,7 +20,7 @@ public interface ResourceService {
 
     void addResrouce(Sysresource resource);
 
-    List<Sysresource> selectResourceList(String id);
+    List<Sysresource> selectResourceList();
 
 
 

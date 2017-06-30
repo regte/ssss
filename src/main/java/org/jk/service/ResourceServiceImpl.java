@@ -57,9 +57,9 @@ public class ResourceServiceImpl implements ResourceService {
     }
     //查询list集合
     @Override
-    public List<Sysresource> selectResourceList(String  id) {
+    public List<Sysresource> selectResourceList() {
 
-        List<Sysresource> selectResourceList = resourceDao.selectResourceList(id);
+        List<Sysresource> selectResourceList = resourceDao.selectResourceList();
         return selectResourceList;
     }
     @Override

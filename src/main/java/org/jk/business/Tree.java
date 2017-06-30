@@ -1,5 +1,6 @@
 package org.jk.business;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +20,52 @@ public class Tree implements java.io.Serializable {
 	private List<Tree> children;
 	private String iconCls;
 	private String pid;
+
+
+	private Date createdatetime;
+
+	private String description;
+
+
+	private String url;
+
+
+	private String resourcetypeid;
+
+
+
+
+	public Date getCreatedatetime() {
+		return createdatetime;
+	}
+
+	public void setCreatedatetime(Date createdatetime) {
+		this.createdatetime = createdatetime;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getResourcetypeid() {
+		return resourcetypeid;
+	}
+
+	public void setResourcetypeid(String resourcetypeid) {
+		this.resourcetypeid = resourcetypeid;
+	}
 
 	public String getId() {
 		return id;

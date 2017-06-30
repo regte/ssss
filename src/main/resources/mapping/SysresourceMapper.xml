@@ -35,26 +35,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <select id="selectResourceList" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />
     from t_sysresource_info
-
   </select>
   <select id="showResource" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select

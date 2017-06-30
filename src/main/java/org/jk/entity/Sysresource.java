@@ -1,6 +1,7 @@
 package org.jk.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Sysresource {
     private String id;
@@ -24,9 +25,20 @@ public class Sysresource {
     private String resourcetypeid;
 
 
-
-
     private Integer leafnode;
+
+
+    /*业务字段*/
+    private List<Sysresource> childrenList;
+
+
+    public List<Sysresource> getChildrenList() {
+        return childrenList;
+    }
+
+    public void setChildrenList(List<Sysresource> childrenList) {
+        this.childrenList = childrenList;
+    }
 
     public String getId() {
         return id;
